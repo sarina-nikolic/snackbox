@@ -1,0 +1,20 @@
+{
+  "name": "liquam-snackbox",
+  "version": "1.0.0",
+  "description": "API server for managing a snackbox",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "tsc",
+    "start": "node out/app.js",
+    "start-js": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sarina",
+  "license": "ISC",
+  "dependencies": {
+    "npx": "^10.2.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
