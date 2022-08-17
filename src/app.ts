@@ -17,4 +17,3 @@ console.info(`korak 5. arr = ${arr}`);
 console.info(`korak 5. lastEl = ${lastEl}`);
 
 
-//  const result = fun(... arg);
