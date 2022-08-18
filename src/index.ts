@@ -1,11 +1,11 @@
 function tsDemo() {
-    const userName = 'Sarina';
-    var jsMessage = `Moin JavaScript Welt -- ${userName}`;
+    const userName: string = 'Sarina';
+    let tsMessage: string = `Moin TypeScript Welt -- ${userName}`;
     
     console.warn(`Run @ ${new Date()}`);
-    console.log(jsMessage);
+    console.log(tsMessage);
     
-    const arr = new Array('jedan', 'dva');
+    const arr: string[] = new Array('jedan', 'dva');
     // const arr = new Array(); arr.push('jedan'); arr.push('dva');
     console.info(`korak 1. arr = ${arr.join(';')}`);
     console.info(`korak 2. arr = ${arr.concat('tri')}`);
