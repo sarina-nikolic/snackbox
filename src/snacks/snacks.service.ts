@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException, UnprocessableEntityException} from '@nestjs/common';
 import { SnackModel } from './snacks.interface';
 
 @Injectable()
@@ -8,8 +8,8 @@ export class SnacksService {
  public findAll(): Array<SnackModel> {
   return this.snacks;
  }
-
-public findOne(id: number): SnackModel {
+ 
+ public findOne(id: number): SnackModel {
   const snack: SnackModel = this.snacks.find(snack => snack.id === id);
 
   if (!snack) {
@@ -17,4 +17,44 @@ public findOne(id: number): SnackModel {
   }
 
   return snack;
-}}
+}
+
+
+public add(snack: SnackModel): SnackModel {
+  // if snack is already in use
+  const nameExists: boolean = this.snacks.some(
+    (item) => item.name === snack.name,
+  );
+  if (nameExists) {
+    throw new UnprocessableEntityException('Snack already exists.');
+  }
+
+  // next id for a new snack
+  const maxId: number = Math.max(...this.snacks.map((snack) => snack.id), 0);
+  const id: number = maxId + 1;
+
+  const newSnack: SnackModel = {
+    // spread can expand strings
+    ...snack,
+    id,
+  };
+
+  // push concatenates
+  this.snacks.push(newSnack);
+
+  return newSnack;
+}
+
+// Deletes snack in in-memory-list, not in json list!
+public delete(id: number): void {
+  const index: number = this.snacks.findIndex(snack => snack.id === id);
+
+  // when no findIndex() match is found, -1 is returned
+  if (index === -1) {
+    throw new NotFoundException('Snack not found.');      
+  }
+// splice removes array elements
+  this.snacks.splice(index, 1);
+}
+
+}
