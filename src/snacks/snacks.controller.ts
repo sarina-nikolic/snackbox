@@ -1,5 +1,6 @@
 import { Controller, Get, Param, Post, Delete,  HttpCode, ParseIntPipe, } from '@nestjs/common';
-import { SnacksService } from './snacks/snacks.service';
+import { SnacksService } from './snacks.service';
+import { SnackModel } from './snacks.interface';
 
 @Controller('snacks')
 export class SnacksController {
