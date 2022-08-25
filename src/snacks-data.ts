@@ -1,4 +1,4 @@
-[
+const snacks = [
     {
         "id": 1,
         "name": "Bounty",
