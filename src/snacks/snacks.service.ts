@@ -20,7 +20,7 @@ export class SnacksService {
 }
 
 
-public add(snack: SnackModel): SnackModel {
+public create(snack: SnackModel): SnackModel {
   // if snack is already in use
   const nameExists: boolean = this.snacks.some(
     (item) => item.name === snack.name,

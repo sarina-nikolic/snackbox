@@ -20,12 +20,12 @@ public findOne(@Param('id', ParseIntPipe) id: number): SnackModel {
 @Post()
 // Post usally transfers data to api, here we have just a json, so we use body
 public create(@Body() snack: SnackModel): SnackModel {
-  return this.snacksService.add(snack);
+  return this.snacksService.create(snack);
 }
 
 @HttpCode(204)
   postMethod(): string {
-    return 'POST request worked';
+    return 'Lots of snacks';
   }
 
   
