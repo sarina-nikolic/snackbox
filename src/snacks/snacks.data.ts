@@ -1,4 +1,4 @@
-const snacks = [
+export const snacksData = [
     {
         "id": 1,
         "name": "Bounty",

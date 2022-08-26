@@ -18,7 +18,6 @@ describe('SnacksController (e2e)', () => {
   it('/snacks (GET)', () => {
     return request(app.getHttpServer())
       .get('/snacks')
-      .expect(200)
-      .expect('[]');
+      .expect(200);
   });
 });

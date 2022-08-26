@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException, UnprocessableEntityException} from '@nestjs/common';
 import { SnackModel } from './snacks.interface';
+import { snacksData } from './snacks.data';
 
 @Injectable()
 export class SnacksService {
- private snacks: Array<SnackModel> = [];
+ private snacks: Array<SnackModel> = snacksData;
 
  public findAll(): Array<SnackModel> {
   return this.snacks;
