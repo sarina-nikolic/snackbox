@@ -1,23 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppController } from './snacks.controller';
-import { AppService } from './snacks.service';
+import { SnacksController } from './snacks.controller';
+import { SnacksService } from './snacks.service';
 
-describe('AppController', () => {
-  let appController: AppController;
+describe('SnacksController', () => {
+  let snacksController: SnacksController;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [AppController],
-      providers: [AppService],
+      controllers: [SnacksController],
+      providers: [SnacksService],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    snacksController = app.get<SnacksController>(SnacksController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World! -- Sarina"', () => {
-  
-      expect(appController.getHello()).toBe('Hello World! -- Sarina');
+  describe('GET /snacks', () => {
+    it('should return all snacks', () => {
+      expect(snacksController.findAll()).toStrictEqual([]);
     });
   });
 });
