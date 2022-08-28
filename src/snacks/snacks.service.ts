@@ -14,12 +14,11 @@ export class SnacksService {
   const snack: SnackModel = this.snacks.find(snack => snack.id === id);
 
   if (!snack) {
-    throw new NotFoundException('Snack not found.');
+    throw new NotFoundException(`Whoops! Who ate all of the snack with id=${id}?!`);
   }
 
   return snack;
 }
-
 
 public create(snack: SnackModel): SnackModel {
   // if snack is already in use
@@ -32,12 +31,11 @@ public create(snack: SnackModel): SnackModel {
 
   // next id for a new snack
   const maxId: number = Math.max(...this.snacks.map((snack) => snack.id), 0);
-  const id: number = maxId + 1;
+  snack.id = maxId + 1;
 
   const newSnack: SnackModel = {
     // spread can expand strings
-    ...snack,
-    id,
+    ...snack
   };
 
   // push concatenates
@@ -52,7 +50,7 @@ public delete(id: number): void {
 
   // when no findIndex() match is found, -1 is returned
   if (index === -1) {
-    throw new NotFoundException('Snack not found.');      
+    throw new NotFoundException(`Whoops! Cannot delete non existing snack with id=${id}.`);
   }
 // splice removes array elements
   this.snacks.splice(index, 1);

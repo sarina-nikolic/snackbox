@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Delete,  HttpCode, ParseIntPipe, Body } from '@nestjs/common';
+import { Controller, Get, Param, Post, Delete, ParseIntPipe, Body } from '@nestjs/common';
 import { SnacksService } from './snacks.service';
 import { SnackModel } from './snacks.interface';
 
@@ -22,12 +22,6 @@ public findOne(@Param('id', ParseIntPipe) id: number): SnackModel {
 public create(@Body() snack: SnackModel): SnackModel {
   return this.snacksService.create(snack);
 }
-
-@HttpCode(204)
-  postMethod(): string {
-    return 'Lots of snacks';
-  }
-
   
 @Delete(':id')
 // void represents the return value of functions which don't return a value
