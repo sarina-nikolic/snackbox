@@ -5,7 +5,7 @@ import { SnacksModule } from '../src/snacks/snacks.module';
 import { SnacksService } from '../src/snacks/snacks.service';
 import { SnackModel } from '../src/snacks/snacks.interface';
 
-const assert = require("assert");
+const assert = require('assert');
 
 describe('SnacksController (e2e)', () => {
   let app: INestApplication;
@@ -37,10 +37,10 @@ describe('SnacksController (e2e)', () => {
       .expect(200)
       .then((response) => {
         const singleSnack: SnackModel = response.body;
-        assert(singleSnack.id === 1)
+        assert(singleSnack.id === 1);
         console.log(singleSnack);
-        console.log(`singleSnack.id = ${singleSnack.id}`)
+        console.log(`singleSnack.id = ${singleSnack.id}`);
         // assert(snacksReponse.length == 1);
-    });
-  })
+      });
+  });
 });
