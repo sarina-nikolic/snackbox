@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { SnacksController } from './snacks.controller';
 import { SnacksService } from './snacks.service';
 import { SnackModel } from './snacks.interface';
+import { NotFoundException } from '@nestjs/common';
 
 describe('SnacksController', () => {
   let snacksController: SnacksController;
@@ -44,6 +45,20 @@ describe('SnacksController', () => {
       };
       // TODO: implement proper test that verifies the actual value, i.e. id === 5
       expect(snacksController.create(newSnack)).toStrictEqual(newSnack);
+    });
+  });
+
+  describe('DELETE /snacks', () => {
+    it('should delete a snack', () => {
+      expect(snacksController.delete(3)).toBeUndefined();
+    });
+
+    it('should not delete non-existent snack (returns HTTP status code 422)', () => {
+      try {
+        snacksController.delete(2022);
+      } catch (e) {
+        expect(e).toBeInstanceOf(NotFoundException);
+      }
     });
   });
 });
