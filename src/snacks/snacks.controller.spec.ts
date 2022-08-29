@@ -33,4 +33,17 @@ describe('SnacksController', () => {
       expect(snacksController.findById(1)).toStrictEqual(expectedSnack);
     });
   });
+
+  describe('POST /snacks', () => {
+    it('should create a new snack', () => {
+      const newSnack: SnackModel = {
+        id: 5,
+        name: 'KitKat',
+        kcalPer100g: 570,
+        priceInEuro: 2,
+      };
+      // TODO: implement proper test that verifies the actual value, i.e. id === 5
+      expect(snacksController.create(newSnack)).toStrictEqual(newSnack);
+    });
+  });
 });
