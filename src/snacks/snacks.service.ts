@@ -14,7 +14,7 @@ export class SnacksService {
     return this.snacks;
   }
 
-  public findOne(id: number): SnackModel {
+  public findById(id: number): SnackModel {
     const snack: SnackModel = this.snacks.find((snack) => snack.id === id);
 
     if (!snack) {

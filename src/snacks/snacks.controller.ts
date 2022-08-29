@@ -21,8 +21,8 @@ export class SnacksController {
 
   // Param values are always strings. ParseIntPipe converts id to number
   @Get(':id')
-  public findOne(@Param('id', ParseIntPipe) id: number): SnackModel {
-    return this.snacksService.findOne(id);
+  public findById(id: number): SnackModel {
+    return this.snacksService.findById(id);
   }
 
   @Post()
