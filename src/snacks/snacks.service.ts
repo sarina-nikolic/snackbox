@@ -10,8 +10,10 @@ import { snacksData } from './snacks.data';
 export class SnacksService {
   private snacks: Array<SnackModel> = snacksData;
 
-  public findAll(): Array<SnackModel> {
-    return this.snacks;
+  public find(minPrice?: number, maxPrice?: number): Array<SnackModel> {
+    return this.snacks.filter(
+      (snack) => snack.priceInEuro >= minPrice && snack.priceInEuro <= maxPrice,
+    );
   }
 
   public findById(id: number): SnackModel {

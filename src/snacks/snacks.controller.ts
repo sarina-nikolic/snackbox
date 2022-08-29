@@ -6,22 +6,36 @@ import {
   Delete,
   ParseIntPipe,
   Body,
+  Query,
+  ParseFloatPipe,
 } from '@nestjs/common';
 import { SnacksService } from './snacks.service';
 import { SnackModel } from './snacks.interface';
+import { PriceQueryDto } from './snacks.dto';
 
 @Controller('snacks')
 export class SnacksController {
   constructor(private readonly snacksService: SnacksService) {}
 
   @Get()
-  public findAll(): Array<SnackModel> {
-    return this.snacksService.findAll();
+  public find(
+    @Query() query: PriceQueryDto,
+    // @Query('minPrice', ParseFloatPipe) minPrice?: number,
+    // @Query('maxPrice', ParseFloatPipe) maxPrice?: number,
+  ): Array<SnackModel> {
+    // https://stackoverflow.com/questions/28975896/is-there-a-way-to-check-for-both-null-and-undefined
+    if (query.minPrice == null) {
+      query.minPrice = 0;
+    }
+    if (query.maxPrice == null) {
+      query.maxPrice = 1000;
+    }
+    return this.snacksService.find(query.minPrice, query.maxPrice);
   }
 
   // Param values are always strings. ParseIntPipe converts id to number
   @Get(':id')
-  public findById(id: number): SnackModel {
+  public findById(@Param('id', ParseIntPipe) id: number): SnackModel {
     return this.snacksService.findById(id);
   }
 

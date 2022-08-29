@@ -19,7 +19,14 @@ describe('SnacksController', () => {
   describe('GET /snacks', () => {
     it('should return all snacks', () => {
       // TODO: implement proper test later
-      expect(snacksController.findAll()).not.toStrictEqual([]);
+      expect(snacksController.find()).not.toStrictEqual([]);
+    });
+  });
+
+  describe('GET /snacks', () => {
+    it('should return snacks with price >= 0.6 && price <= 1.2', () => {
+      // TODO: implement proper test later
+      expect(snacksController.find(0.6, 1.2)).not.toStrictEqual([]);
     });
   });
 
